@@ -2,6 +2,7 @@ const http = require('http')
 const fs = require('fs')
 const path = require('path')
 const pool = require('./db')
+const url = require('url');
 
 const PORT = process.env.PORT || 3000;
 
@@ -11,11 +12,15 @@ const scripts = path.join(__dirname, 'scripts')
 
 const PAGE_home = path.join(pages, 'home.html')
 const STYLE_home = path.join(styles, 'homeStyle.css')
-const SCRIPT_dateAndTimeSynce = path.join(scripts, 'dateAndTimeSync.js')
+const SCRIPT_dateAndTimeSync = path.join(scripts, 'dateAndTimeSync.js')
 const SCRIPT_displaySubjects = path.join(scripts, 'displaySubjects.js')
 
 const server = http.createServer((req, res) => {
-    if(req.url == "/home" || req.url == "/"){
+
+    const parsedUrl = url.parse(req.url, true); 
+    const pathname = parsedUrl.pathname;
+
+    if(pathname  == "/home" || req.url == "/"){
         fs.readFile(PAGE_home, (err, data) => {
             if (err) {
                 console.log(__filename + `: Error reading ${PAGE_home}` )
@@ -27,7 +32,7 @@ const server = http.createServer((req, res) => {
         })
     } 
 
-    else if (req.url == "/homeStyle"){
+    else if (pathname  == "/homeStyle"){
         fs.readFile(STYLE_home, (err, data) => {
             if (err) {
                 console.log(__filename + `: Error reading ${STYLE_home}`)
@@ -40,8 +45,8 @@ const server = http.createServer((req, res) => {
         })
     }
     
-    else if (req.url == "/dateAndTimeSync"){
-        fs.readFile(SCRIPT_dateAndTimeSynce, (err, data) => {
+    else if (pathname  == "/dateAndTimeSync"){
+        fs.readFile(SCRIPT_dateAndTimeSync, (err, data) => {
             if (err) {
                 console.log(__filename + `: Error reading ${SCRIPT_dateAndTimeSynce}`)
                 res.writeHead(500)
@@ -53,7 +58,7 @@ const server = http.createServer((req, res) => {
         })
     }
     
-    else if (req.url == "/displaySubjects"){
+    else if (pathname == "/displaySubjects"){
         fs.readFile(SCRIPT_displaySubjects, (err, data) => {
             if (err) {
                 console.log(__filename + `: Error reading ${SCRIPT_displaySubjects}`)
@@ -67,7 +72,7 @@ const server = http.createServer((req, res) => {
     }
     
     
-    else if (req.url == '/requestSubjects'){
+    else if (pathname  == '/requestSubjects'){
         pool.query('SELECT * FROM "tblSubject";', (err, result) => {
             if (err) {
                 res.end(JSON.stringify({ error: "Error retrieving subjects:", err }))

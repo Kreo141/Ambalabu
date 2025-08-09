@@ -40,6 +40,7 @@ $(document).ready(async function(){
                     <p class="subjectTime">${subject.time}</p>
                 </div>
                 `)
+                break
             }
 
         }
