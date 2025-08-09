@@ -3,7 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const pool = require('./db')
 
-const PORT = 3000
+const PORT = process.env.PORT || 3000;
 
 const pages = path.join(__dirname, 'pages') 
 const styles = path.join(__dirname, 'styles')
@@ -86,6 +86,7 @@ const server = http.createServer((req, res) => {
     }
 })
 
-server.listen(PORT, () => {
+server.listen(PORT, 0.0.0.0 () => {
     console.log(`Website is running on localhost:${PORT}`)
+
 })
