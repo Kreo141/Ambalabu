@@ -1,0 +1,92 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: white;
+    
+    height: 100vh;
+    width: 100%;
+}
+
+
+.ClassScheduleContainer{
+    position: relative;
+    padding: 10px 30px 10px 30px;
+    background-image: radial-gradient(circle at -50% 50%, #3870ff, #27479950 );
+    border-radius: 30px;
+    box-shadow: 0px 10px 10px -5px, 0px -6px 10px -5px rgba(255, 255, 255, 0.514);
+
+    font-family: "Inter", sans-serif;
+    
+    width: 50%;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.Sun{
+    position: absolute;
+    left: -20%;
+    height: 500px;
+    width: 500px;
+
+    z-index: -1;
+} .sunShape{
+    background-color: #FFA600;
+    border-radius: 50%;
+    box-shadow: 0px 0px 100px 10px #FFD900;
+
+    height: 100%;
+    width: 100%;        
+}
+
+.Clouds{
+    position: absolute;
+    left: -15%;
+    bottom: -50%;
+
+    width: 10%;
+    z-index: -1;
+} .cloud{
+    height: 500px;
+}
+
+.TimeDateContainer{
+    padding: 15px 0px 15px 0px;
+}
+.TimeDateContainer p{
+    margin: 0;
+} 
+.timeNow{
+    font-size: 1.5em;
+    font-weight: bold;
+} 
+.dateNow{
+    font-size: 1.2em;
+}
+
+.SubjectContainer{
+    padding: 20px 0px 20px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+} .subject{
+    padding: 10px 15px 10px 20px;
+    background-color: rgba(255, 255, 255, 0.068);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0px 10px 10px -10px, 0px -6px 10px -5px rgba(255, 255, 255, 0.514);
+    width: 95%; 
+} 
+.subject p{
+    margin: 0;
+}
+.subject .subjectName{
+    font-size: 1.2em;
+}
+.subject .subjectTime{
+    font-size: 1.2em;
+    font-weight: bold;
+}
